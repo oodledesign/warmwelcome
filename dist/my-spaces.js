@@ -23,11 +23,17 @@ function fetchAndDisplayRecords(memberId) {
     } else {
       // Process the data and generate HTML for your list
       const recordsList = data.records.map((record) => {
-        const spaceValue = record.fields.Space; // Get the 'Space' field value
+        const spaceValue = record.fields.Space || ''; // Get the 'Space' field value or an empty string if undefined
         const recordId = record.id; // Get the Airtable record ID
 
-        // Check if 'imageMap' is defined before accessing it
-        const imageUrl = record.fields.imageMap?.[0]?.url || 'default-image-url.jpg';
+        // Check if 'imageMap' is defined and has at least one item
+        const imageUrl = record.fields.imageMap && record.fields.imageMap[0] && record.fields.imageMap[0].url
+          ? record.fields.imageMap[0].url
+          : 'default-image-url.jpg';
+
+        // Check if 'Name' and 'Postcode' fields are defined, or provide default values
+        const name = record.fields.Name || 'No Name';
+        const postcode = record.fields.Postcode || 'No Postcode';
 
         // Build the URL with the 'Space' field as a query parameter
         const recordPageURL = `/space?l=${encodeURIComponent(spaceValue)}`;
@@ -35,11 +41,11 @@ function fetchAndDisplayRecords(memberId) {
         return `
           <div class="blog11_item">
             <div class="blog11_image-wrapper">
-              <img class="blog11_image" src="${imageUrl}" alt="${record.fields.Name || 'No Name'}" />
+              <img class="blog11_image" src="${imageUrl}" alt="${name}" />
             </div>
             <div class="spacer-small"></div>
-            <h4>${record.fields.Name || 'No Name'}</h4>
-            <p>${record.fields.Postcode || 'No Postcode'}</p>
+            <h4>${name}</h4>
+            <p>${postcode}</p>
             <div class="spacer-small"></div>
             <a class="button is-small" href="${recordPageURL}">View Space</a>
             <a class="button is-small background-color-deep-purple" href="/edit-record/${recordId}">Edit Space</a>
@@ -63,3 +69,6 @@ function fetchAndDisplayRecords(memberId) {
     }
   });
 }
+
+// Call the function to fetch and display records
+fetchAndDisplayRecords();
