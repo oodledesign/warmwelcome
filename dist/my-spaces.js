@@ -9,7 +9,7 @@ function fetchAndDisplayRecords(memberId) {
   const tableName = 'tblw6DCbx65JncsnA';
 
   // Construct the Airtable API URL with a filter for the memberId
-  const apiUrl = `https://api.airtable.com/v0/${baseId}/${tableName}?filterByFormula=MemberID%3D'${memberId}'`;
+  const apiUrl = `https://api.airtable.com/v0/${baseId}/${tableName}?filterByFormula=Members%3D'${memberId}'`;
 
   // Make a GET request to the Airtable API
   fetch(apiUrl, {
