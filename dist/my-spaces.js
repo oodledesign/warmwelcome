@@ -1,12 +1,12 @@
-et memberId; // Define memberId in the outer scope
+// Define memberId in the outer scope
+let memberId;
 
-  // Function to fetch and display Airtable records
-  function fetchAndDisplayRecords(memberId) {
-    // Replace with your Airtable API key, Base ID, and table name
-    const apiKey = 'pat5Vla7rtpxt9ZX1.18c1d5493cb8278e2f83d8ab0de80fa851e8848e863bd8458c404f69004d5d27';
-    const baseId = 'appWExZKdNseQs0zG';
-    const tableName = 'tblw6DCbx65JncsnA';
-
+// Function to fetch and display Airtable records
+function fetchAndDisplayRecords(memberId) {
+  // Replace with your Airtable API key, Base ID, and table name
+  const apiKey = 'pat5Vla7rtpxt9ZX1.18c1d5493cb8278e2f83d8ab0de80fa851e8848e863bd8458c404f69004d5d27';
+  const baseId = 'appWExZKdNseQs0zG';
+  const tableName = 'tblw6DCbx65JncsnA';
 
   // Function to render the data
   function renderData(data) {
@@ -26,17 +26,20 @@ et memberId; // Define memberId in the outer scope
         const spaceValue = record.fields.Space; // Get the 'Space' field value
         const recordId = record.id; // Get the Airtable record ID
 
+        // Check if 'imageMap' is defined before accessing it
+        const imageUrl = record.fields.imageMap?.[0]?.url || 'default-image-url.jpg';
+
         // Build the URL with the 'Space' field as a query parameter
         const recordPageURL = `/space?l=${encodeURIComponent(spaceValue)}`;
 
         return `
           <div class="blog11_item">
             <div class="blog11_image-wrapper">
-              <img class="blog11_image" src="${record.fields.imageMap[0].url}" alt="${record.fields.Name}" />
+              <img class="blog11_image" src="${imageUrl}" alt="${record.fields.Name || 'No Name'}" />
             </div>
             <div class="spacer-small"></div>
-            <h4>${record.fields.Name}</h4>
-            <p>${record.fields.Postcode}</p>
+            <h4>${record.fields.Name || 'No Name'}</h4>
+            <p>${record.fields.Postcode || 'No Postcode'}</p>
             <div class="spacer-small"></div>
             <a class="button is-small" href="${recordPageURL}">View Space</a>
             <a class="button is-small background-color-deep-purple" href="/edit-record/${recordId}">Edit Space</a>
@@ -59,3 +62,4 @@ et memberId; // Define memberId in the outer scope
       fetchAndDisplayRecords(memberId);
     }
   });
+}
