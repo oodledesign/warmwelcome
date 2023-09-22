@@ -84,18 +84,7 @@ function populatePageWithData(record) {
   saturdayElement.textContent = record.saturday;
   sundayElement.textContent = record.sunday;
 
-  // Iterate through elements with the data-closed-if-empty attribute
-  const elementsWithClosedAttribute = document.querySelectorAll('[data-closed-if-empty]');
 
-  elementsWithClosedAttribute.forEach(element => {
-    const fieldName = element.id.toLowerCase(); // Assuming the element id matches the field name
-
-    if (!record[fieldName]) {
-      element.textContent = 'Closed';
-    } else {
-      element.textContent = record[fieldName];
-    }
-  });
 
   const tags = record.tags; // Change "Tags" to your field name
 
