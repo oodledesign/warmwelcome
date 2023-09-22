@@ -8,8 +8,8 @@ function fetchAndDisplayRecords(memberId) {
   const baseId = 'appWExZKdNseQs0zG';
   const tableName = 'tblw6DCbx65JncsnA';
 
-  // Construct the Airtable API URL with a filter for the memberId
-  const apiUrl = `https://api.airtable.com/v0/${baseId}/${tableName}?filterByFormula=Members%3D'${memberId}'`;
+  // Construct the Airtable API URL
+  const apiUrl = `https://api.airtable.com/v0/${baseId}/${tableName}`;
 
   // Make a GET request to the Airtable API
   fetch(apiUrl, {
@@ -20,8 +20,13 @@ function fetchAndDisplayRecords(memberId) {
   })
   .then(response => response.json())
   .then(data => {
-    // Call the function to render the data on the page
-    renderData(data);
+    // Filter records that match the memberId
+    const filteredRecords = data.records.filter(record => {
+      return record.fields.MemberID === memberId;
+    });
+
+    // Call the function to render the filtered records on the page
+    renderData(filteredRecords);
   })
   .catch(error => {
     console.error('Error fetching data from Airtable:', error);
@@ -29,8 +34,8 @@ function fetchAndDisplayRecords(memberId) {
 }
 
 // Function to render the data on the page
-function renderData(data) {
-  if (data.records.length === 0) {
+function renderData(records) {
+  if (records.length === 0) {
     // Display a message and link
     const noRecordsMessage = `
       <div>
@@ -41,8 +46,8 @@ function renderData(data) {
     // Insert the message into a container in your Webflow page
     document.getElementById('records-container').innerHTML = noRecordsMessage;
   } else {
-    // Process the data and generate HTML for your list
-    const recordsList = data.records.map((record) => {
+    // Process the filtered records and generate HTML for your list
+    const recordsList = records.map(record => {
       const spaceValue = record.fields.Space || ''; // Get the 'Space' field value or an empty string if undefined
       const recordId = record.id; // Get the Airtable record ID
 
