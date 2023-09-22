@@ -65,7 +65,7 @@ function fetchAndDisplayRecords(memberId) {
       console.log(memberId);
 
       // Call the function to fetch and display Airtable records with the Member ID
-      fetchAndDisplayRecords(memberId);
+      renderData(memberId);
     }
   });
 }
