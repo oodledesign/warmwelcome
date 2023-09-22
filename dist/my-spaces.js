@@ -8,7 +8,7 @@
     const tableName = 'tblw6DCbx65JncsnA';
 
     // Fetch data from Airtable
-    fetch(`https://api.airtable.com/v0/${baseId}/${tableName}?filterByFormula=({Members}='${memberId}')`, {
+    fetch(`https://api.airtable.com/v0/${baseId}/${tableName}?filterByFormula=({MemberID}='${memberId}')`, {
       headers: {
         Authorization: `Bearer ${apiKey}`,
       },
