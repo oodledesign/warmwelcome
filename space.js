@@ -1,4 +1,3 @@
-<script>
 const apiKey = 'pat5Vla7rtpxt9ZX1.18c1d5493cb8278e2f83d8ab0de80fa851e8848e863bd8458c404f69004d5d27';
 const baseId = 'appWExZKdNseQs0zG';
 const tableName = 'tblw6DCbx65JncsnA';
@@ -171,4 +170,3 @@ function populatePageWithData(record) {
     otherServicesHeading.style.display = 'none';
   }
 }
-</script>
