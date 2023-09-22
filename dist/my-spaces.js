@@ -14,7 +14,7 @@ function fetchAndDisplayRecords(memberId) {
       // Display a message and link
       const noRecordsMessage = `
         <div>
-          <p>You haven't created any Spaces yet, please add one <a href="/dashboard/add-a-space">here</a>.</p>
+          <p>You haven't created any Spaces yet, please add one <a class="text-color-purple" href="/dashboard/add-a-space">here</a>.</p>
         </div>
       `;
 
