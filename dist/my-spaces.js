@@ -7,33 +7,6 @@
     const baseId = 'appWExZKdNseQs0zG';
     const tableName = 'tblw6DCbx65JncsnA';
 
-    // Check if the data is already in localStorage
-    const storedData = localStorage.getItem('airtableData');
-
-    if (storedData) {
-      // If data is found in localStorage, parse it and use it
-      const data = JSON.parse(storedData);
-      renderData(data);
-    } else {
-      // If data is not found in localStorage, fetch it from Airtable
-      fetch(`https://api.airtable.com/v0/${baseId}/${tableName}?filterByFormula=({Members}='${memberId}')`, {
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          // Process the data and generate HTML for your list
-          renderData(data);
-
-          // Store the fetched data in localStorage
-          localStorage.setItem('airtableData', JSON.stringify(data));
-        })
-        .catch((error) => {
-          console.error('Error fetching data from Airtable:', error);
-        });
-    }
-  }
 
   // Function to render the data
   function renderData(data) {
