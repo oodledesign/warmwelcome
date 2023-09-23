@@ -31,7 +31,7 @@ const spaceValue = urlParams.get('l'); // Assuming the query parameter is named 
     .catch(error => {
       console.error('Error fetching data:', error);
     });
-}
+
 
 function populatePageWithData(record) {
   // Populate HTML elements with the data
