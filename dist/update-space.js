@@ -6,17 +6,8 @@ const tableName = 'tblw6DCbx65JncsnA';
 const urlParams = new URLSearchParams(window.location.search);
 const spaceValue = urlParams.get('l'); // Assuming the query parameter is named "space"
 
-// Check if the data is already in localStorage
-const localStorageKey = `airtableData_${spaceValue}`;
-const cachedData = localStorage.getItem(localStorageKey);
 
-if (cachedData) {
-  // Data exists in localStorage, use it instead of making an API request
-  const record = JSON.parse(cachedData);
-  populatePageWithData(record);
-} else {
-  // Data is not in localStorage, make the API request
-  const apiUrl = `https://api.airtable.com/v0/${baseId}/${tableName}?filterByFormula=Space%3D%22${encodeURIComponent(spaceValue)}%22`;
+  const apiUrl = `https://api.airtable.com/v0/${baseId}/${tableName}?filterByFormula=RecordID%3D%22${encodeURIComponent(spaceValue)}%22`;
 
   fetch(apiUrl, {
     method: 'GET',
@@ -29,9 +20,6 @@ if (cachedData) {
       // Check if any records match the filter
       if (data.records && data.records.length > 0) {
         const record = data.records[0].fields;
-
-        // Store the fetched data in localStorage for future use
-        localStorage.setItem(localStorageKey, JSON.stringify(record));
 
         // Populate the page with the data
         populatePageWithData(record);
