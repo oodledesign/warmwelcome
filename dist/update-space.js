@@ -1,4 +1,3 @@
-<script type="module">
 // Import Firebase App and Firestore functions
   import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.1/firebase-app.js';
   import { getFirestore, doc, getDoc } from 'https://www.gstatic.com/firebasejs/9.0.1/firebase-firestore.js';
@@ -241,4 +240,3 @@ if (tagsValue) {
     }
   }
   queryFirestoreAndReplace();
-</script>
