@@ -157,12 +157,12 @@ if (publishingValue === 'PUBLISH') {
 
 
 // Assuming you have already fetched the document data into the 'docSnapshot' variable
-const publishingValue = docSnapshot.data().publishing;
+const publishingValueTwo = docSnapshot.data().publishing;
 const volunteerOptInValue = docSnapshot.data().volunteerOptIn;
 
 const volunteerNotPublishedDiv = document.getElementById('volunteer-not-published');
 
-if (publishingValue !== 'PUBLISH' && volunteerOptInValue === 'Volunteer opt in') {
+if (publishingValueTwo !== 'PUBLISH' && volunteerOptInValue === 'Volunteer opt in') {
   // Display the div when the conditions are met
   volunteerNotPublishedDiv.style.display = 'block';
 } else {
