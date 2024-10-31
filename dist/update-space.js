@@ -144,15 +144,18 @@ const publishingValue = docSnapshot.data().publishing;
 
 const publishBanner = document.getElementById('publish-banner');
 const publishSettings = document.getElementById('publish-settings');
+const publishedTag = document.getElementById('published-tag');
 
 if (publishingValue === 'PUBLISH') {
 
   publishBanner.style.display = 'none';
+publishedTag.style.display = 'block';
   publishSettings.style.display = 'block';
 } else {
 
   publishBanner.style.display = 'block'; 
   publishSettings.style.display = 'none';
+publishTag.style.display = 'none';
 }
 
 
