@@ -1,219 +1,143 @@
 // Import Firebase App and Firestore functions
-  import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.1/firebase-app.js';
-  import { getFirestore, doc, getDoc } from 'https://www.gstatic.com/firebasejs/9.0.1/firebase-firestore.js';
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.1/firebase-app.js';
+import { getFirestore, doc, getDoc } from 'https://www.gstatic.com/firebasejs/9.0.1/firebase-firestore.js';
 
-  // Firebase config object
-  const firebaseConfig = {
-    apiKey: "AIzaSyDzpnXGZ3MyBIIZMy4RK33kFSDL3mdPcbw",
-    authDomain: "eminent-subject-359910.firebaseapp.com",
-    projectId: "eminent-subject-359910",
-    storageBucket: "eminent-subject-359910.appspot.com",
-    messagingSenderId: "415082525557",
-    appId: "1:415082525557:web:7131a8cc789bad581b993c"
-  };
+// Firebase config object
+const firebaseConfig = {
+  apiKey: "AIzaSyDzpnXGZ3MyBIIZMy4RK33kFSDL3mdPcbw",
+  authDomain: "eminent-subject-359910.firebaseapp.com",
+  projectId: "eminent-subject-359910",
+  storageBucket: "eminent-subject-359910.appspot.com",
+  messagingSenderId: "415082525557",
+  appId: "1:415082525557:web:7131a8cc789bad581b993c"
+};
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app); // Initialize Firestore database instance
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-  // Function to get query parameters from the URL
-  function getQueryParam(param) {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get(param);
-  }
-
-  // Function to query Firestore and replace HTML elements
-  async function queryFirestoreAndReplace() {
-    // Get the 'l' query parameter from the URL
-    const spaceId = getQueryParam('l');
-
-    try {
-      // Reference the Firestore document directly using the document ID
-      const docRef = doc(db, "Spaces", spaceId); // Use the 'db' variable to reference Firestore
-      const docSnapshot = await getDoc(docRef);
-
-      if (docSnapshot.exists()) {
-        // Get the data from the Firestore document
-        const data = docSnapshot.data();
-
-          // Get the 'Name' and other fields from the Firestore document
-          const nameValue = docSnapshot.data().name;
-          const descriptionValue = docSnapshot.data().description;
-          const organisationValue = docSnapshot.data().organisationName;
-          const addressValue = docSnapshot.data().address;
-          const addresstwoValue = docSnapshot.data().addrestwo;
-          const addressthreeValue = docSnapshot.data().addressthree;
-          const cityValue = docSnapshot.data().city;
-          const stateValue = docSnapshot.data().state;
-          const postcodeOutValue = docSnapshot.data().postcodeOut;
-          const postcodeInValue = docSnapshot.data().postcodeIn;
-          const imageLogoValue = docSnapshot.data().imageLogo;
-          const imageOneValue = docSnapshot.data().imageOne;
-          const emailValue = docSnapshot.data().email;
-          const mondayValue = docSnapshot.data().monday;
-          const tuesdayValue = docSnapshot.data().tuesday;
-          const wednesdayValue = docSnapshot.data().wednesday;
-          const thursdayValue = docSnapshot.data().thursday;
-          const fridayValue = docSnapshot.data().friday;
-          const saturdayValue = docSnapshot.data().saturday;
-          const sundayValue = docSnapshot.data().sunday;
-          const otherServicesValue = docSnapshot.data().otherServices;
-          
-					const instagramValue = docSnapshot.data().instagram;
-          const facebookValue = docSnapshot.data().facebook;
-          const twitterValue = docSnapshot.data().twitter;
-          const linkedinValue = docSnapshot.data().linkedin;
-          const youtubeValue = docSnapshot.data().youtube;
-          
-          const websiteValue = docSnapshot.data().website;
-          const phoneValue = docSnapshot.data().phone;
-          
-
-         // Replace the HTML elements with the retrieved values
-const nameElement = document.getElementById('Name');
-const nameTwoElement = document.getElementById('Name-2');
-const descriptionElement = document.getElementById('Description');
-const organisationElement = document.getElementById('Organisation');
-const addressElement = document.getElementById('Address');
-const addresstwoElement = document.getElementById('Address2');
-const addressthreeElement = document.getElementById('Address3');
-const cityElement = document.getElementById('City');
-const stateElement = document.getElementById('State');
-const postcodeOutElement = document.getElementById('postcodeOut');
-const postcodeInElement = document.getElementById('postcodeIn');
-const imageLogoElement = document.getElementById('ImageLogo');
-const imageOneElement = document.getElementById('Image1');
-const emailElement = document.getElementById('email');
-const mondayElement = document.getElementById('monday');
-const tuesdayElement = document.getElementById('tuesday');
-const wednesdayElement = document.getElementById('wednesday');
-const thursdayElement = document.getElementById('thursday');
-const fridayElement = document.getElementById('friday');
-const saturdayElement = document.getElementById('saturday');
-const sundayElement = document.getElementById('sunday');
-const otherServicesElement = document.getElementById('otherServices');
-
-const instagramElement = document.getElementById('instagram');
-const facebookElement = document.getElementById('facebook');
-const twitterElement = document.getElementById('twitter');
-const linkedinElement = document.getElementById('linkedin');
-const youtubeElement = document.getElementById('youtube');
-
-const websiteElement = document.getElementById('website');
-const phoneElement = document.getElementById('phone');
-          
-
-
-if (nameElement) { nameElement.innerText = docSnapshot.data().name || ''; }
-if (nameTwoElement) { nameTwoElement.innerText = docSnapshot.data().name || ''; }
-if (descriptionElement) { descriptionElement.innerText = docSnapshot.data().description || ''; }
-if (organisationElement) { organisationElement.innerText = docSnapshot.data().organisationName || ''; }
-if (addressElement) { addressElement.innerText = docSnapshot.data().address || ''; }
-if (addresstwoElement) { addresstwoElement.innerText = docSnapshot.data().addresstwo || ''; }
-if (addressthreeElement) { addressthreeElement.innerText = docSnapshot.data().addressthree || ''; }
-if (cityElement) { cityElement.innerText = docSnapshot.data().city || ''; }
-if (stateElement) { stateElement.innerText = docSnapshot.data().state || ''; }
-if (postcodeOutElement) { postcodeOutElement.innerText = docSnapshot.data().postcodeOut || ''; }
-if (postcodeInElement) { postcodeInElement.innerText = docSnapshot.data().postcodeIn || ''; }
-if (imageLogoElement) { imageLogoElement.innerText = docSnapshot.data().imageLogo || ''; }
-if (imageOneElement) { imageOneElement.innerText = docSnapshot.data().imageOne || ''; }
-if (emailElement) { emailElement.innerText = docSnapshot.data().email || ''; }
-if (mondayElement) { mondayElement.innerText = docSnapshot.data().monday || ''; }
-if (tuesdayElement) { tuesdayElement.innerText = docSnapshot.data().tuesday || ''; }
-if (wednesdayElement) { wednesdayElement.innerText = docSnapshot.data().wednesday || ''; }
-if (thursdayElement) { thursdayElement.innerText = docSnapshot.data().thursday || ''; }
-if (fridayElement) { fridayElement.innerText = docSnapshot.data().friday || ''; }
-if (saturdayElement) { saturdayElement.innerText = docSnapshot.data().saturday || ''; }
-if (sundayElement) { sundayElement.innerText = docSnapshot.data().sunday || ''; }
-if (otherServicesElement) { otherServicesElement.innerText = docSnapshot.data().otherServices || ''; }
-
-if (instagramElement) { instagramElement.innerText = docSnapshot.data().instagram || ''; }
-if (facebookElement) { facebookElement.innerText = docSnapshot.data().facebook || ''; }
-if (twitterElement) { twitterElement.innerText = docSnapshot.data().twitter || ''; }
-if (linkedinElement) { linkedinElement.innerText = docSnapshot.data().linkedin || ''; }
-if (youtubeElement) { youtubeElement.innerText = docSnapshot.data().youtube || ''; }
-
-if (websiteElement) { websiteElement.innerText = docSnapshot.data().website || ''; }
-if (phoneElement) { phoneElement.innerText = docSnapshot.data().phone || ''; }
-
-
-
-        
-// Assuming you have already fetched the document data into the 'docSnapshot' variable
-const publishingValue = docSnapshot.data().publishing;
-
-const publishBanner = document.getElementById('publish-banner');
-const publishSettings = document.getElementById('publish-settings');
-const publishedTag = document.getElementById('published-tag');
-
-if (publishingValue === 'PUBLISH') {
-
-  publishBanner.style.display = 'none';
-publishedTag.style.display = 'block';
-  publishSettings.style.display = 'block';
-} else {
-
-  publishBanner.style.display = 'block'; 
-  publishSettings.style.display = 'none';
-publishTag.style.display = 'none';
+// Function to get query parameters from the URL
+function getQueryParam(param) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(param);
 }
 
-
-// Assuming you have already fetched the document data into the 'docSnapshot' variable
-const publishingValueTwo = docSnapshot.data().publishing;
-const volunteerOptInValue = docSnapshot.data().volunteerOptIn;
-
-const volunteerNotPublishedDiv = document.getElementById('volunteer-not-published');
-
-if (publishingValueTwo !== 'PUBLISH' && volunteerOptInValue === 'Volunteer opt in') {
-  // Display the div when the conditions are met
-  volunteerNotPublishedDiv.style.display = 'block';
-} else {
-  // Hide the div when the conditions are not met
-  volunteerNotPublishedDiv.style.display = 'none';
+// Helper: safely set text content
+function setText(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.innerText = value ?? '';
 }
 
+// Helper: safely toggle display
+function setDisplay(id, show, displayType = 'block') {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.style.display = show ? displayType : 'none';
+}
 
-
-// Inside your forEach loop after retrieving other fields
-const tagsValue = docSnapshot.data().tags;
-
-if (tagsValue) {
-  // Split the comma-separated tags into an array
-  const tagsArray = tagsValue.split(',');
-
-  // Get the HTML element with the ID 'tags'
+// Helper: render tags list
+function renderTags(tagsValue) {
   const tagsElement = document.getElementById('tags');
+  if (!tagsElement) return;
 
-  // Check if the 'tags' element exists
-  if (tagsElement) {
-    // Clear the existing content
+  if (!tagsValue) {
     tagsElement.innerHTML = '';
-
-    // Create an unordered list element with the class 'portfolio-header5_tag-list'
-    const ulElement = document.createElement('ul');
-    ulElement.classList.add('portfolio-header5_tag-list');
-
-    // Iterate through the tags and create list items with the class 'portfolio-header5_tag-item'
-    tagsArray.forEach((tag) => {
-      const liElement = document.createElement('li');
-      liElement.textContent = tag.trim(); // Remove leading/trailing spaces
-      liElement.classList.add('portfolio-header5_tag-item');
-      ulElement.appendChild(liElement);
-    });
-
-    // Append the unordered list to the 'tags' element
-    tagsElement.appendChild(ulElement);
+    return;
   }
-} else {
-  // Handle the case where 'tagsValue' is empty or undefined
-  console.log("No tags found in Firestore.");
+
+  const tagsArray = String(tagsValue).split(',').map(t => t.trim()).filter(Boolean);
+
+  tagsElement.innerHTML = '';
+  const ulElement = document.createElement('ul');
+  ulElement.classList.add('portfolio-header5_tag-list');
+
+  tagsArray.forEach((tag) => {
+    const liElement = document.createElement('li');
+    liElement.textContent = tag;
+    liElement.classList.add('portfolio-header5_tag-item');
+    ulElement.appendChild(liElement);
+  });
+
+  tagsElement.appendChild(ulElement);
 }
 
-        
-}
-    } catch (error) {
-      console.error("Error querying Firestore: ", error);
+// Main function to query Firestore and update the page
+async function queryFirestoreAndReplace() {
+  const spaceId = getQueryParam('l');
+
+  if (!spaceId) {
+    console.warn("Missing 'l' query param (spaceId).");
+    return;
+  }
+
+  try {
+    const docRef = doc(db, "Spaces", spaceId);
+    const docSnapshot = await getDoc(docRef);
+
+    if (!docSnapshot.exists()) {
+      console.warn("No Firestore document found for spaceId:", spaceId);
+      return;
     }
+
+    const data = docSnapshot.data();
+
+    // Text fields
+    setText('Name', data.name);
+    setText('Name-2', data.name);
+    setText('Description', data.description);
+    setText('Organisation', data.organisationName);
+
+    setText('Address', data.address);
+    setText('Address2', data.addresstwo);
+    setText('Address3', data.addressthree);
+    setText('City', data.city);
+    setText('State', data.state);
+    setText('postcodeOut', data.postcodeOut);
+    setText('postcodeIn', data.postcodeIn);
+
+    setText('ImageLogo', data.imageLogo);
+    setText('Image1', data.imageOne);
+
+    setText('email', data.email);
+    setText('phone', data.phone);
+    setText('website', data.website);
+
+    setText('monday', data.monday);
+    setText('tuesday', data.tuesday);
+    setText('wednesday', data.wednesday);
+    setText('thursday', data.thursday);
+    setText('friday', data.friday);
+    setText('saturday', data.saturday);
+    setText('sunday', data.sunday);
+
+    setText('otherServices', data.otherServices);
+
+    setText('instagram', data.instagram);
+    setText('facebook', data.facebook);
+    setText('twitter', data.twitter);
+    setText('linkedin', data.linkedin);
+    setText('youtube', data.youtube);
+
+    // Publish UI logic
+    const isPublished = data.publishing === 'PUBLISH';
+
+    setDisplay('publish-banner', !isPublished);      // show banner when NOT published
+    setDisplay('publish-settings', isPublished);     // show settings when published
+    setDisplay('published-tag', isPublished);        // show tag when published
+
+    // Volunteer not published UI logic:
+    // show if NOT published AND opted in
+    const showVolunteerNotPublished =
+      !isPublished && data.volunteerOptIn === 'Volunteer opt in';
+
+    setDisplay('volunteer-not-published', showVolunteerNotPublished);
+
+    // Tags
+    renderTags(data.tags);
+
+  } catch (error) {
+    console.error("Error querying Firestore: ", error);
   }
-  queryFirestoreAndReplace();
+}
+
+queryFirestoreAndReplace();
